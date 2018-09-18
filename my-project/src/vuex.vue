@@ -1,43 +1,20 @@
 <template>
     <div id="app">
-        <h1>Hello Vuex</h1>
-       <p>{{aaa}}</p>
-       <button @click="add">+</button>
-       <button @click="sub">-</button>  
-       <ul>
-           <li v-for="(item,index) in items">
-               {{index}}--{{item.message}}
-           </li>
-       </ul> 
-       <p v-once>原始数据：{{aaa}}</p> 
-       <p>修改过的数据：{{aaa}}</p>    
+        <h1>props使用方式</h1>
+        <hello txt='组件' v-bind:ddd="btnText"></hello>
+        <p><input type="text" v-model="btnText"></p>
     </div>
-
 </template>
 
 <script>
+import hello from './components/hello.vue'//
 export default {
+    name:'app',
+    components:{hello},//
     data(){
         return{
-            aaa:2,
-            items:[
-                {message:'first'},
-                {message:'second'}
-            ]
+           btnText:"Hello World"
         }
-    },
-    methods:{
-        add:function(){
-            this.aaa++
-        },
-        sub:function(){
-            this.aaa--
-        }
-
     }
 }
 </script>
-
-<style>
-
-</style>
