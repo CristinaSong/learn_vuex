@@ -1,20 +1,29 @@
 <template>
     <div id="app">
-        <h1>props使用方式</h1>
-        <hello txt='组件' v-bind:ddd="btnText"></hello>
-        <p><input type="text" v-model="btnText"></p>
-    </div>
+    父组件:
+    <span>{{name}}</span>
+    <br>
+    <br>
+    <!-- 引入子组件 定义一个on的方法监听子组件的状态-->
+    <child v-on:childByValue="childByValue"></child>
+  </div>
 </template>
 
 <script>
-import hello from './components/hello.vue'//
+import child from './components/child.vue'
 export default {
     name:'app',
-    components:{hello},//
-    data(){
-        return{
-           btnText:"Hello World"
-        }
+    components:{child},
+    data () {
+      return {
+        name: ''
+      }
+    },
+    methods: {
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        this.name = childValue
+      }
     }
-}
+  }
 </script>
