@@ -1,29 +1,26 @@
 <template>
     <div id="app">
-    父组件:
-    <span>{{name}}</span>
-    <br>
-    <br>
-    <!-- 引入子组件 定义一个on的方法监听子组件的状态-->
-    <child v-on:childByValue="childByValue"></child>
-  </div>
+        <el-steps :space="200" :active="active"  finish-status="success" align-center>
+            <el-step title="步骤 1" description="这是一段很长很长很长的描述性文字" icon="el-icon-edit"></el-step>
+            <el-step title="步骤 2" description="这是一段很长很长很长的描述性文字" icon="el-icon-upload" ></el-step>
+            <el-step title="步骤 3" description="这是一段很长很长很长的描述性文字" icon="el-icon-upload"></el-step>
+        </el-steps>
+        <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+    </div>
 </template>
 
 <script>
-import child from './components/child.vue'
 export default {
-    name:'app',
-    components:{child},
-    data () {
-      return {
-        name: ''
-      }
-    },
-    methods: {
-      childByValue: function (childValue) {
-        // childValue就是子组件传过来的值
-        this.name = childValue
-      }
+  name: "app",
+  data() {
+    return {
+      active: 0
+    };
+  },
+  methods: {
+    next() {
+      if (this.active++ > 2) this.active = 0;
     }
   }
+};
 </script>
