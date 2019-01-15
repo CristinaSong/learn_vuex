@@ -3,14 +3,16 @@
 import Vue from 'vue'
 import store from './store'
 import vuex from './vuex.vue'
+import check from './check.vue'
 import ElementUI from 'element-ui'
+import 'flex.css'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
 new Vue({
     el:'#app',
     store,
-    render:xx=>xx(vuex)
+    render:xx=>xx(check),
 })
 
 // import App from './App'
