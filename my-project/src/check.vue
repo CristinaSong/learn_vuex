@@ -23,32 +23,6 @@
         </tr>
       </tbody>
     </table>
-    <div class="qqq"></div>
-
-    <!-- <li>
-      <h3 class="F7">下拉框选择案例</h3>
-      <div class="por">
-        <div class="selectBox" style="width: 400px;">
-          <div class="selectBox_show" v-on:click.stop="arrowDown">
-            <i class="icon icon_arrowDown"></i>
-            <p title="请选择">{{unitName}}</p>
-            <input type="hidden" name="unit" v-model="unitModel">
-          </div>
-          <div
-            class="selectBox_list"
-            v-show="isShowSelect"
-            style="max-height: 240px; width: 398px; display: block;"
-          >
-            <div
-              class="selectBox_listLi"
-              v-for="(item, index) in dataList"
-              @click.stop="select(item, index)"
-            >{{item.value}}</div>
-          </div>
-        </div>
-      </div>
-
-    </li> -->
   </div>
 </template>
 
@@ -56,14 +30,6 @@
 export default {
   data() {
     return {
-    //   isShowSelect: false,
-    //   dataList: [
-    //     { key: -1, value: "请选择" },
-    //     { key: 0, value: "苹果" },
-    //     { key: 1, value: "香蕉" }
-    //   ],
-    //   unitName: "请选择",
-
       list: [
         {
           name: "小明",
@@ -104,16 +70,6 @@ export default {
         }
       });
     },
-//     arrowDown() {
-//       this.isShowSelect = !this.isShowSelect;
-//     },
-//     select(item, index) {
-//       this.isShowSelect = false;
-//       console.log(item);
-//       console.log(index);
-//       this.unitModel = index;
-//       this.unitName = item.value;
-//     }
   },
   watch: {
     list: {
@@ -136,12 +92,6 @@ export default {
 </script>
 
 <style>
-.qqq {
-  width: 200px;
-  height: 30px;
-  background-image: linear-gradient(90deg, #ff6294 0%, #feae67 100%);
-  border-radius: 6px 6px 0px 0px;
-}
 table {
   border-collapse: collapse;
 }
