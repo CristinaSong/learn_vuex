@@ -1,98 +1,55 @@
 <template>
   <div class="app">
-    <table border="1">
-      <thead>
-        <tr>
-          <input
-            type="checkbox"
-            v-model="allchecked"
-            @click="changeState(allchecked)"
-            style="zoom:200%;vertical-align: middle"
-          >
-          <th>name</th>
-          <th>age</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in list" :key = item.name>
-          <td>
-            <input type="checkbox" v-model="item.checked" style="zoom:200%">
-          </td>
-          <td>{{item.name}}</td>
-          <td>{{item.age}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- 关于插槽 -->
+    <navigation-link :lists="nameList">
+        <!-- 具名插槽与默认插槽 -->
+        <!-- <template slot="girl">
+            漂亮、美丽、购物、逛街
+        </template>
+        <template slot="boy">
+            帅气、才实
+        </template>
+        <div>
+            我是一类人，
+            我是默认的插槽
+        </div> -->
+
+        <!-- 作用域插槽：组件上的属性，可以在组件元素内使用 -->
+        <!-- <template slot-scope="a"> -->
+        <!-- {"say":"你好"} -->
+            <!-- {{a}}
+        </template> -->
+    
+    <!-- 我可以随便根据这个对象的属性值进行操作:当id==1，前面加个你好 -->        
+    <template slot-scope="a">
+            <!-- {{a}} -->
+        <div v-if='a.bbbbb.id==1'>你好：<span>{{a.bbbbb.name}}</span></div>
+        <div v-else>{{a.bbbbb.name}}</div>
+    </template>
+
+    </navigation-link>
   </div>
 </template>
 
 <script>
+import navigationLink from './components/navigationLink.vue'
 export default {
   data() {
     return {
-      list: [
-        {
-          name: "小明",
-          age: 23,
-          checked: false
-        },
-        {
-          name: "小红",
-          age: 2,
-          checked: true
-        },
-        {
-          name: "小蓝",
-          age: 23,
-          checked: true
-        },
-        {
-          name: "小bai",
-          age: 40,
-          checked: true
-        },
-        {
-          name: "王小二",
-          age: 18,
-          checked: false
-        }
-      ],
-      allchecked: false
-    };
-  },
-  methods: {
-    changeState(val) {
-      this.list.forEach(item => {
-        if (val === false) {
-          item.checked = true;
-        } else {
-          item.checked = false;
-        }
-      });
-    },
-  },
-  watch: {
-    list: {
-      handler(val) {
-        console.log("watch数组的变化", val);
-        var i = 0;
-        this.list.forEach(item => {
-          if (item.checked === true) i++;
-        });
-        if (i === this.list.length) {
-          this.allchecked = true;
-        } else {
-          this.allchecked = false;
-        }
-      },
-      deep: true
+       nameList:[
+            {id:1,name:'孙悟空'},
+            {id:2,name:'猪八戒'},
+            {id:3,name:'沙和尚'},
+            {id:4,name:'唐僧'},
+            {id:5,name:'小白龙'},
+        ] 
     }
-  }
+  },
+  components:{
+    navigationLink,
+  },
 };
 </script>
 
 <style>
-table {
-  border-collapse: collapse;
-}
 </style>
